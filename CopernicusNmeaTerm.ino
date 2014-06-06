@@ -71,7 +71,6 @@ void loop() {
     char c = ss.read();
     Serial.write(c); 
   }
-  //command = "$PTNL" + getSexitrial.println(command);Serial.println("---");
   while ( Serial.available() > 0 ) {
     char s = (char) Serial.read();
     if (s == '\r' ) { // if done with entry
@@ -90,12 +89,6 @@ void loop() {
     }
   }
   if ( done ) {
-//    Serial.println("command:");
-//    Serial.print(command);
-//    Serial.println("---");
-//    Serial.println("sentence:");
-//    Serial.println(sentence);
-//    Serial.println("---");
     if ( command == echoToggleStr ) {
       echoOn = !echoOn;
     } else {
@@ -115,39 +108,3 @@ void loop() {
   }
   delay(100);
 }
-
-/*
-  getStringWithCheckSum - accepts user message input from tty
-  
-*/
-String getStringWithCheckSum() {
-  String result;
-  
-  boolean done = false;
-  byte check = CHK_INIT;
-  while (!done) {
-    
-    if (Serial.available() > 0 ) {
-      char s = (char) Serial.read();
-      if (s == '\r' ) { // if done with entry
-        done = true;
-      }
-      else {
-        result += s;
-        //Serial.print(s);
-        check ^= (byte)s;
-      }
-    }
-  }
-  String chkStr = String( check, HEX );
-  if ( check < 0x10 ) {
-    chkStr = '0' + chkStr;
-  }
-  result += '*' + chkStr + '\r' + '\n';
-  return( result );
-}
-
-String checkSum( String string ) {
-  
-}
-
