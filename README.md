@@ -16,7 +16,7 @@ setting is to send a GGA and VTG sentence every second regardless
 of the unit getting an actual fix.
 
 Enter a Trimble proprietary command sentence exclusive of '$PTNL'
-at the beginning and '*cs' ('*' + checksum characters) at the
+at the beginning and '\*cs' ('\*' + checksum characters) at the
 end. The terminal will immediately display the entire sentence
 as sent ('Sending: <full sentence>') amid the incoming NMEA
 sentences. If the unit sends a response, it will appear shortly
@@ -31,13 +31,13 @@ configured for no automatic sentences on power up. A test to
 see if the unit is functional and your wiring is correct is to
 send a request for the current automatic sentence configuration
 by entering 'QNM' (no quotes). You should receive a response of the form 
-'$PTNLRNM,xxxx,yy,*cc' regardless of having satellites in view
+'$PTNLRNM,xxxx,yy,\*cc' regardless of having satellites in view
 or even and antenna attached. If 'xxxx' is '0000', the unit
 has in the past been configured for no auto output and that 
 configuration had been saved with the RT message. So, it is
 probably working just fine. Change the auto output to factory
 default with 'SNM,0005,01'. You should get a confirmation
-'$PTNLRNM,A*3A' (the 'A' means valid, if 'V', it's invalid and
+'PTNLRNM,A\*3A' (the 'A' means valid, if 'V', it's invalid and
 you may have entered the command incorrectly.
 
 
