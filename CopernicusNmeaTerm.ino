@@ -46,7 +46,7 @@
 */
 
 #include <SoftwareSerial.h>
-SoftwareSerial ss(4, 3);
+SoftwareSerial ss(5,6);
 const byte CHK_INIT = 'P' ^ 'T' ^ 'N' ^ 'L';
 boolean echoOn;
 String cmdStart = "$PTNL";
