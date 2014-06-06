@@ -35,9 +35,29 @@ by entering 'QNM' (no quotes). You should receive a response of the form
 or even and antenna attached. If 'xxxx' is '0000', the unit
 has in the past been configured for no auto output and that 
 configuration had been saved with the RT message. So, it is
-probably working just fine. Change the auto output to factory
-default with 'SNM,0005,01'. You should get a confirmation
-'PTNLRNM,A\*3A' (the 'A' means valid, if 'V', it's invalid and
-you may have entered the command incorrectly.
+probably working just fine.
 
+You can change the auto output to factory default for example with
 
+SNM,0005,01
+
+You should get a confirmation '$PTNLRNM,A\*3A' (the first 'A' 
+means valid, if 'V', it's invalid and you may have entered the
+command incorrectly.
+
+A critical setting for high altitude balloons and such is the
+dynamics mode, which must be set to 'air' or altitude is limited:
+
+SCR,,,,,,,3,,
+
+and yes, that's seven commas before the '3' for the seven fields
+not being changed and there are two unchanged fields after the '3'.
+
+This and any other of your configuration changes will be lost 
+on power down unless saved to flash memory with: 
+
+SRT,H,2,,
+
+which should produce a response of '$PTNLRRTA*3F'. Again, the
+'A' indicates success and if 'V', it failed - check that the
+command is correct and try again.
